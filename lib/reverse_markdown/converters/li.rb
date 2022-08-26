@@ -9,7 +9,7 @@ module ReverseMarkdown
         prefix                   = prefix_for(node)
 
         "#{indentation}#{prefix}#{content.chomp}\n" +
-          (contains_child_paragraph ? "\n" : '')
+          (contains_child_paragraph ? "" : '')
       end
 
       def prefix_for(node)
