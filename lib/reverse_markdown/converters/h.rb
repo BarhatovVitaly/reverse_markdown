@@ -3,7 +3,12 @@ module ReverseMarkdown
     class H < Base
       def convert(node, state = {})
         prefix = '#' * node.name[/\d/].to_i
-        ["\n", prefix, ' ', treat_children(node, state), "\n"].join
+        if state.fetch(:no_new_line, false)
+          [prefix, ' ', treat_children(node, state)].join
+        else
+          ["\n", prefix, ' ', treat_children(node, state), "\n"].join
+        end
+
       end
     end
 
