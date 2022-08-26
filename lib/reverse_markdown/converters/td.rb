@@ -2,7 +2,7 @@ module ReverseMarkdown
   module Converters
     class Td < Base
       def convert(node, state = {})
-        content = treat_children(node, state)
+        content = treat_children(node, state.merge(no_new_line: true))
         " #{content} |"
       end
     end

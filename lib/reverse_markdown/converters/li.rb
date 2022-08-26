@@ -3,8 +3,8 @@ module ReverseMarkdown
     class Li < Base
       def convert(node, state = {})
         contains_child_paragraph = node.first_element_child ? node.first_element_child.name == 'p' : false
-        content_node             = contains_child_paragraph ? node.first_element_child : node
-        content                  = treat_children(content_node, state)
+        content_node             = node # contains_child_paragraph ? node.first_element_child : node
+        content                  = treat_children(content_node, state.merge(no_new_line: true))
         indentation              = indentation_from(state)
         prefix                   = prefix_for(node)
 

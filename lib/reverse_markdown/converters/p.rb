@@ -2,7 +2,11 @@ module ReverseMarkdown
   module Converters
     class P < Base
       def convert(node, state = {})
-        "\n\n" << treat_children(node, state).strip << "\n\n"
+        if state.fetch(:no_new_line, false)
+          treat_children(node, state).strip
+        else
+          "\n\n" << treat_children(node, state).strip << "\n\n"
+        end
       end
     end
 
